@@ -1,0 +1,27 @@
+{
+  "name": "mundial2026-predicciones",
+  "version": "1.0.0",
+  "description": "Predicciones analíticas del Mundial FIFA 2026 — RAM Predicciones Deportivas",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "start": "npm run dev",
+    "build": "echo \"No build step required — static ES modules. Use npm run dev or deploy as-is.\"",
+    "lint": "eslint src/js/**/*.js",
+    "format": "prettier --write \"**/*.{js,html,css,md,json}\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "eslint": "^9.28.0",
+    "prettier": "^3.5.3"
+  },
+  "keywords": [
+    "mundial-2026",
+    "world-cup",
+    "predicciones",
+    "futbol"
+  ],
+  "author": "RAM — Predicciones Deportivas",
+  "license": "MIT"
+}
