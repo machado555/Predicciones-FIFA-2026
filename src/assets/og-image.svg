@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Mundial 2026 Predicciones RAM">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f4525"/>
+      <stop offset="100%" stop-color="#071a0e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="80" y="180" fill="#d4a017" font-family="Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="8">RAM  PREDICCIONES</text>
+  <text x="80" y="320" fill="#ffffff" font-family="Arial Black, sans-serif" font-size="96" font-weight="900">MUNDIAL 2026</text>
+  <text x="80" y="400" fill="#8fb39a" font-family="Arial, sans-serif" font-size="36">Predicciones analíticas · Fase de grupos y eliminatorias</text>
+  <circle cx="1050" cy="315" r="120" fill="none" stroke="#d4a017" stroke-width="8"/>
+  <text x="1050" y="335" text-anchor="middle" fill="#e8b84b" font-size="80">½</text>
+</svg>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Predicciones analíticas del Mundial FIFA 2026: fase de grupos, cuadro eliminatorio, probabilidades y resultados en vivo. RAM — Predicciones Deportivas.">
+  <meta name="author" content="RAM — Predicciones Deportivas">
+  <meta name="theme-color" content="#0f4525">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mundial FIFA 2026 — Predicciones Analíticas | RAM">
+  <meta property="og:description" content="Predicciones del Mundial 2026 con modelo estadístico, factor de forma y seguimiento en vivo desde openfootball.">
+  <meta property="og:image" content="src/assets/og-image.svg">
+  <meta property="og:locale" content="es_ES">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mundial FIFA 2026 — Predicciones Analíticas">
+  <meta name="twitter:description" content="Predicciones del Mundial 2026 con modelo estadístico y resultados en vivo.">
+
+  <title>Mundial 2026 — Predicciones Analíticas | RAM</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
+
+  <!-- DISCLAIMER INICIAL -->
+  <div id="disclaimer-modal" class="disclaimer-overlay" aria-hidden="false">
+    <div class="disclaimer-box">
+      <div id="disclaimer-title" class="disclaimer-title">📋 Antes de empezar — nociones básicas</div>
+      <div class="disclaimer-body">
+        <p>Este sitio presenta <strong>predicciones y estimaciones de probabilidad</strong>, no resultados garantizados ni información oficial de la FIFA.</p>
+        <ul>
+          <li>Los porcentajes de <strong>confianza (%)</strong> reflejan una estimación subjetiva combinando ranking FIFA/Elo, forma reciente y odds de casas de apuestas — no son certezas.</li>
+          <li>El fútbol es impredecible: equipos "favoritos" pueden perder y "desvalidos" pueden sorprender, como ya ocurrió en la fase de grupos.</li>
+          <li>Las confianzas de partidos futuros se <strong>recalculan automáticamente</strong> según el rendimiento real mostrado por cada equipo (ver notas 📊).</li>
+          <li>Si hay conexión disponible, el sitio intenta cargar <strong>resultados en vivo</strong> desde una fuente pública (openfootball/worldcup.json); si falla, se muestra el último snapshot guardado.</li>
+          <li>Toda la información es de carácter <strong>informativo y recreativo</strong>. No constituye asesoramiento para apuestas.</li>
+        </ul>
+      </div>
+      <button id="disclaimer-close" class="disclaimer-btn" type="button">Entendido, vamos al Mundial ⚽</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-tag">Análisis Predictivo Cuantitativo</p>
+      <h1>Copa del Mundo<br><span>FIFA 2026</span></h1>
+      <div class="hero-brand">
+        <div class="hero-logo" aria-hidden="true">RAM</div>
+        <p class="hero-brand-text">RAM — Predicciones deportivas</p>
+      </div>
+      <p>Predicciones calculadas integrando ranking FIFA/Elo, odds de casas de apuestas, rendimiento reciente, historial y contexto de sede.</p>
+      <div class="hero-meta">
+        <span>📅 Generado: <strong>10 Jun 2026</strong></span>
+        <span>🏟️ Sede: <strong>EUA · México · Canadá</strong></span>
+        <span>⚽ Equipos: <strong>48</strong></span>
+        <span>🎯 Estrategia: <strong>Maximizar E(puntos en pronóstico)</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Secciones del análisis">
+    <button type="button" class="tab active" data-tab="fase-grupos" aria-selected="true">🏟 Fase de Grupos</button>
+    <button type="button" class="tab" data-tab="cuadro">⚔️ Cuadro Eliminatorio</button>
+    <button type="button" class="tab" data-tab="campeones">🏆 Podio Final</button>
+    <button type="button" class="tab" data-tab="analisis">📊 Análisis Especial</button>
+    <button type="button" class="tab" data-tab="probabilidad">🎲 Probabilidad de Aciertos</button>
+  </nav>
+
+  <main id="main-content">
+
+    <section id="fase-grupos" class="section active" tabindex="-1">
+      <h2 class="sec-title">Fase de Grupos — Predicciones</h2>
+      <p class="sec-sub">Tabla proyectada (PTS·GF·GC·DF) y resultados estimados. 🟡 = clasifica directo · 🔵 = posible mejor tercero</p>
+
+      <div id="live-tracker" class="live-tracker">
+        <div class="live-tracker-content">
+          <strong style="color:var(--gold);">🔴 Seguimiento en vivo:</strong>
+          <span id="live-status" style="color:var(--muted);">⏳ Preparando carga de resultados…</span>
+          <span id="live-spinner" class="live-spinner" hidden>Cargando</span>
+          <br>
+          <span class="live-legend">
+            Snapshot base: 9 de 72 partidos jugados al 14 jun 2026 —
+            <span class="real-exact">✅✅ exacto</span>
+            <span class="real-ok">✅ resultado correcto</span>
+            <span class="real-miss">❌ fallido</span>
+            — las confianzas de partidos futuros se recalculan automáticamente (ver 📊 en cada partido) según un "factor de forma" derivado de los resultados reales: cada equipo que rinde mejor/peor de lo esperado desplaza ±hasta 15pts la confianza de sus próximos partidos.
+          </span>
+        </div>
+      </div>
+
+      <div class="groups-grid" id="groups-container" aria-live="polite"></div>
+    </section>
+
+    <section id="cuadro" class="section" tabindex="-1">
+      <h2 class="sec-title">Cuadro Eliminatorio Completo</h2>
+      <p class="sec-sub">32avos → 16avos → Cuartos → Semis → Final. Confianza expresada en % por partido.</p>
+
+      <div class="note-box">
+        <strong>Formato 2026:</strong> Clasifican los 12 primeros de cada grupo + 12 segundos + 8 mejores terceros = 32 equipos al Round of 32. El cruce asignado depende de qué grupos produzcan a los mejores terceros. Las llaves usan el esquema oficial FIFA de dos caminos ("paths") para que los 2 equipos mejor rankeados no puedan cruzarse antes de la final.
+      </div>
+
+      <div class="knockout-table-wrap">
+        <table class="knockout-table" id="knockout-table">
+          <thead>
+            <tr>
+              <th scope="col">Ronda</th>
+              <th scope="col">Ganador / Predicho</th>
+              <th scope="col">vs</th>
+              <th scope="col">Rival</th>
+              <th scope="col">Resultado Probable</th>
+              <th scope="col">Confianza</th>
+            </tr>
+          </thead>
+          <tbody id="knockout-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="campeones" class="section" tabindex="-1">
+      <h2 class="sec-title">Podio Final Proyectado</h2>
+
+      <div class="champion-section">
+        <article class="champion-card">
+          <p class="label">🏆 Campeón Proyectado</p>
+          <span class="flag-big" aria-hidden="true">🇪🇸</span>
+          <p class="team-name-big">ESPAÑA</p>
+          <p class="card-note">Probabilidad implícita de mercado: ~18% · Elo #1–2</p>
+          <div class="conf-bar"><div class="conf-fill" style="width:72%"></div></div>
+          <p class="conf-pct">Confianza predicción: 72% (relativa a campeona ≠ España absoluto)</p>
+          <p class="card-desc">Lamine Yamal + Pedri + Morata. Campeona de Euro 2024. Mejor ranking FIFA. Grupo asequible (H). Trayectoria favorable del cuadro.</p>
+        </article>
+        <article class="champion-card silver-border">
+          <p class="label silver">🥈 Subcampeón Proyectado</p>
+          <span class="flag-big" aria-hidden="true">🇫🇷</span>
+          <p class="team-name-big">FRANCIA</p>
+          <p class="card-note">Odds +500 · Ranking FIFA #1 · Mbappé + Griezmann</p>
+          <div class="conf-bar"><div class="conf-fill silver" style="width:61%"></div></div>
+          <p class="conf-pct">Confianza: 61%</p>
+          <p class="card-desc">Campeón 2018, subcampeón 2022. Erling Haaland amenaza en semis desde el otro camino. Grupo I manejable.</p>
+        </article>
+      </div>
+
+      <div class="podium">
+        <div class="podium-item p1">
+          <p class="pos">🥇 Campeón</p>
+          <span class="emoji" aria-hidden="true">🇪🇸</span>
+          <p class="name">España</p>
+          <p class="odds">+470 FanDuel · 72% conf.</p>
+        </div>
+        <div class="podium-item p2">
+          <p class="pos">🥈 Subcampeón</p>
+          <span class="emoji" aria-hidden="true">🇫🇷</span>
+          <p class="name">Francia</p>
+          <p class="odds">+500 · 61% conf.</p>
+        </div>
+        <div class="podium-item">
+          <p class="pos">🥉 3er Lugar</p>
+          <span class="emoji" aria-hidden="true">🇧🇷</span>
+          <p class="name">Brasil</p>
+          <p class="odds">+850 · 55% conf.</p>
+        </div>
+        <div class="podium-item">
+          <p class="pos">4° Lugar</p>
+          <span class="emoji" aria-hidden="true">🇳🇴</span>
+          <p class="name">Noruega</p>
+          <p class="odds">Sorpresa · 38% conf.</p>
+        </div>
+      </div>
+
+      <h2 class="sec-title" style="margin-top:1.5rem">⭐ Selección Sorpresa del Torneo</h2>
+      <article class="sorpresa-card">
+        <h3 class="sorpresa-title">🇳🇴 NORUEGA — La gran sorpresa</h3>
+        <p class="sorpresa-body">
+          <strong>Razón principal:</strong> Haaland (50+ goles en el último año de club) + Ødegaard en el pico de su carrera. El Grupo I es favorable (Iraq + Senegal + Francia). Si termina 2° del grupo evita a España hasta semis. Clasificada 31° del ranking FIFA pero con el delantero centro más peligroso del mundo. Tiene capacidad para llegar a semis o incluso a la final. Los mercados la ignoran: Haaland cotiza a +2200 Bota de Oro, valor brutal.
+        </p>
+      </article>
+
+      <h2 class="sec-title">🎯 Semifinalistas Proyectados</h2>
+      <div class="semis-grid">
+        <div class="semi-card">
+          <div class="emoji" aria-hidden="true">🇪🇸</div>
+          <p class="name">España</p>
+          <p class="meta">Camino A · Odds +470</p>
+        </div>
+        <div class="semi-card">
+          <div class="emoji" aria-hidden="true">🇧🇷</div>
+          <p class="name">Brasil</p>
+          <p class="meta">Camino A · Odds +850</p>
+        </div>
+        <div class="semi-card">
+          <div class="emoji" aria-hidden="true">🇫🇷</div>
+          <p class="name">Francia</p>
+          <p class="meta">Camino B · Odds +500</p>
+        </div>
+        <div class="semi-card">
+          <div class="emoji" aria-hidden="true">🇳🇴</div>
+          <p class="name">Noruega</p>
+          <p class="meta">Camino B · Sorpresa 🔥</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="analisis" class="section" tabindex="-1">
+      <h2 class="sec-title">Análisis Especial</h2>
+
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <h3 class="analysis-card-header">💥 10 Partidos con Mayor Probabilidad de Sorpresa</h3>
+          <div id="upsets-list"></div>
+        </div>
+        <div class="analysis-card">
+          <h3 class="analysis-card-header">📉 5 Selecciones Más Sobrevaloradas</h3>
+          <div id="over-list"></div>
+        </div>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <h3 class="analysis-card-header">📈 5 Selecciones Más Infravaloradas</h3>
+          <div id="under-list"></div>
+        </div>
+        <div class="analysis-card">
+          <h3 class="analysis-card-header">🧠 Estrategia para Concurso de Pronósticos</h3>
+          <div id="strategy-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="probabilidad" class="section" tabindex="-1">
+      <h2 class="sec-title">¿Qué tan probable es acertar la Fase de Grupos?</h2>
+      <p class="sec-sub">72 predicciones analizadas — 12 grupos (A–L), 6 partidos cada uno · Modelo con correlación intra-grupo</p>
+
+      <div class="prob-toggle-row" role="group" aria-label="Modo de probabilidad">
+        <button type="button" class="prob-toggle active" data-mode="resultado" aria-pressed="true">⚽ Acertar resultado</button>
+        <button type="button" class="prob-toggle" data-mode="marcador" aria-pressed="false">🎯 Marcador exacto</button>
+      </div>
+      <p id="prob-mode-note" style="text-align:center; color:var(--muted); font-size:.7rem; margin-bottom:1rem; display:none;">
+        * Prob. de score exacto = 6%–14% según confianza del partido (curva en U: partidos parejos son más caóticos)
+      </p>
+
+      <div id="prob-summary"></div>
+
+      <div class="prob-grid-2">
+        <div class="analysis-card">
+          <h3 class="analysis-card-header">Distribución de aciertos esperados</h3>
+          <p id="prob-bell-meta" style="color:var(--muted); font-size:.7rem; margin-bottom:.5rem;"></p>
+          <svg id="prob-bell-svg" viewBox="0 0 600 220" style="width:100%; height:auto; display:block;" role="img" aria-label="Curva de distribución de aciertos esperados"></svg>
+        </div>
+        <div class="analysis-card">
+          <h3 class="analysis-card-header">P(acertar ≥ X partidos)</h3>
+          <div id="prob-thresholds" style="display:flex; flex-direction:column; gap:.55rem;"></div>
+          <div id="prob-mode-explain" style="margin-top:.8rem; padding:.5rem; background:rgba(212,160,23,.07); border-radius:4px; font-size:.7rem; color:var(--muted); line-height:1.5;"></div>
+        </div>
+      </div>
+
+      <div class="prob-grid-2">
+        <div class="analysis-card">
+          <h3 class="analysis-card-header">Distribución de confianza (72 partidos)</h3>
+          <p style="color:var(--muted); font-size:.7rem; margin-bottom:.5rem;">Valores de conf. ajustados por factor de forma</p>
+          <svg id="prob-hist-svg" viewBox="0 0 600 200" style="width:100%; height:auto; display:block;" role="img" aria-label="Histograma de confianza por partido"></svg>
+        </div>
+        <div class="analysis-card" style="max-height:280px; overflow-y:auto;">
+          <h3 class="analysis-card-header">Aciertos esperados por grupo</h3>
+          <table style="width:100%; border-collapse:collapse; font-size:.72rem;">
+            <thead>
+              <tr style="color:var(--muted); font-size:.6rem; text-transform:uppercase; letter-spacing:.06em;">
+                <th scope="col" style="text-align:left; padding-bottom:4px;">Grupo</th>
+                <th scope="col" style="text-align:center; padding-bottom:4px;">Conf.avg</th>
+                <th scope="col" style="text-align:center; padding-bottom:4px;">Esperado</th>
+              </tr>
+            </thead>
+            <tbody id="prob-group-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="prob-conclusion"></div>
+
+      <p class="prob-methodology">
+        <strong>Notas del modelo:</strong> la varianza incorpora una correlación intra-grupo (ρ=0.12) entre los 6 partidos de cada grupo,
+        ya que errores de calibración suelen afectar a varios resultados de un mismo grupo a la vez — esto ensancha la curva vs. el
+        supuesto de independencia pura. En modo "marcador exacto", la probabilidad de acertar el score ya no es un ×10% fijo: usa una
+        curva en U (6%–14%) según qué tan desbalanceado está el partido — los partidos muy parejos (~50%) son los más caóticos para
+        predecir el resultado exacto, mientras que goleadas claras tienden a marcadores más predecibles. Además, las confianzas de
+        partidos aún no jugados se ajustan automáticamente (±15pts máx.) según un "factor de forma" calculado a partir de la diferencia
+        entre el marcador real y el predicho en los partidos ya disputados de cada equipo.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">RAM — Predicciones Deportivas</p>
+        <p class="footer-tagline">
+          Análisis predictivo del Mundial FIFA 2026. Proyecto recreativo y educativo — no es información oficial ni asesoramiento de apuestas.
+        </p>
+        <p class="footer-links">
+          <strong>Fuentes de datos:</strong><br>
+          <a href="https://www.fifa.com" target="_blank" rel="noopener noreferrer">FIFA</a> ·
+          <a href="https://github.com/openfootball/worldcup.json" target="_blank" rel="noopener noreferrer">openfootball/worldcup.json</a> (resultados en vivo) ·
+          Ranking FIFA, odds de mercado (FanDuel/CBS/Covers)
+        </p>
+      </div>
+      <div class="footer-disclaimer">
+        <strong>Disclaimer:</strong> Las predicciones son estimaciones de probabilidad, no certezas.
+        Los % de confianza combinan ranking, forma y odds — el fútbol siempre puede sorprender.
+        Si falla la carga en vivo, se muestra el último snapshot guardado.
+        Uso exclusivamente informativo y recreativo.
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 RAM — Predicciones Deportivas · Generado 10 jun 2026</p>
+  </footer>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
