@@ -3,9 +3,10 @@ import { renderAnalysis } from './render/analysis.js';
 import { renderGroups } from './render/groups.js';
 import { renderKnockout } from './render/knockout.js';
 import { renderProbability, setProbMode } from './render/probability.js';
+import { renderFixture } from './render/fixture.js';
 import { loadLiveResults } from './services/liveResults.js';
 
-const TAB_IDS = ['fase-grupos', 'cuadro', 'campeones', 'analisis', 'probabilidad'];
+const TAB_IDS = ['fase-grupos', 'cuadro', 'campeones', 'analisis', 'fixture', 'probabilidad'];
 
 /** Cambia pestaña activa con soporte de teclado. */
 export function showTab(id, tabEl) {
@@ -148,6 +149,7 @@ function init() {
   renderGroups();
   renderKnockout();
   renderAnalysis();
+  renderFixture();
   renderProbability();
   loadLiveResults();
 }

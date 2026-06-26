@@ -4,6 +4,7 @@ import { applyFormAdjustments } from '../models/formAdjustment.js';
 import { flagOf, teamsMatch } from '../utils.js';
 import { renderGroups } from '../render/groups.js';
 import { renderProbability } from '../render/probability.js';
+import { renderFixture } from '../render/fixture.js';
 
 /** Mapeo emoji de bandera → nombre en openfootball/worldcup.json (inglés). */
 export const FLAG_TO_OPENFOOTBALL = {
@@ -24,7 +25,7 @@ export const FLAG_TO_OPENFOOTBALL = {
   '🇦🇺': 'Australia',
   '🇹🇷': 'Turkey',
   '🇩🇪': 'Germany',
-  '🇨🇼': 'Curacao',
+  '🇨🇼': 'Curaçao',
   '🇨🇮': 'Ivory Coast',
   '🇪🇨': 'Ecuador',
   '🇳🇱': 'Netherlands',
@@ -155,6 +156,7 @@ export async function loadLiveResults() {
     applyFormAdjustments();
     renderGroups();
     renderProbability();
+    renderFixture();
   } catch (err) {
     const message = err.name === 'AbortError' ? 'Tiempo de espera agotado' : err.message;
     setLiveStatus(

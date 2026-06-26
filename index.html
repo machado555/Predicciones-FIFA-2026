@@ -53,7 +53,7 @@
       </div>
       <p>Predicciones calculadas integrando ranking FIFA/Elo, odds de casas de apuestas, rendimiento reciente, historial y contexto de sede.</p>
       <div class="hero-meta">
-        <span>📅 Generado: <strong>10 Jun 2026</strong></span>
+        <span>📅 Generado: <strong>26 Jun 2026</strong></span>
         <span>🏟️ Sede: <strong>EUA · México · Canadá</strong></span>
         <span>⚽ Equipos: <strong>48</strong></span>
         <span>🎯 Estrategia: <strong>Maximizar E(puntos en pronóstico)</strong></span>
@@ -73,6 +73,7 @@
     <button type="button" class="tab" data-tab="cuadro">⚔️ Cuadro Eliminatorio</button>
     <button type="button" class="tab" data-tab="campeones">🏆 Podio Final</button>
     <button type="button" class="tab" data-tab="analisis">📊 Análisis Especial</button>
+    <button type="button" class="tab" data-tab="fixture">📅 Fixture</button>
     <button type="button" class="tab" data-tab="probabilidad">🎲 Probabilidad de Aciertos</button>
   </nav>
 
@@ -89,7 +90,7 @@
           <span id="live-spinner" class="live-spinner" hidden>Cargando</span>
           <br>
           <span class="live-legend">
-            Snapshot base: 9 de 72 partidos jugados al 14 jun 2026 —
+            Snapshot base: 9 de 72 partidos jugados al 26 jun 2026 —
             <span class="real-exact">✅✅ exacto</span>
             <span class="real-ok">✅ resultado correcto</span>
             <span class="real-miss">❌ fallido</span>
@@ -242,6 +243,36 @@
       </div>
     </section>
 
+    <section id="fixture" class="section" tabindex="-1">
+      <h2 class="sec-title">Fixture Completo — Mundial 2026</h2>
+      <p class="sec-sub">Los 104 partidos del torneo — 72 de fase de grupos + 32 de eliminación directa. Resultados actualizados en vivo desde openfootball.</p>
+
+      <div class="fixture-controls">
+        <div class="fixture-filter-group" role="group" aria-label="Filtrar por fase">
+          <button type="button" class="fixture-filter-btn active" data-filter="all" aria-pressed="true">Todos</button>
+          <button type="button" class="fixture-filter-btn" data-filter="groups" aria-pressed="false">Fase de Grupos</button>
+          <button type="button" class="fixture-filter-btn" data-filter="knockout" aria-pressed="false">Eliminación Directa</button>
+        </div>
+        <div class="fixture-day-group">
+          <label for="fixture-day-filter" class="fixture-day-label">📅 Día:</label>
+          <select id="fixture-day-filter" class="fixture-day-select">
+            <option value="all">Todos los días</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fixture-container" id="fixture-container" aria-live="polite">
+        <div class="fixture-skeleton">
+          <div class="sk-item"></div>
+          <div class="sk-item"></div>
+          <div class="sk-item"></div>
+          <div class="sk-item"></div>
+          <div class="sk-item"></div>
+          <div class="sk-item"></div>
+        </div>
+      </div>
+    </section>
+
     <section id="probabilidad" class="section" tabindex="-1">
       <h2 class="sec-title">¿Qué tan probable es acertar la Fase de Grupos?</h2>
       <p class="sec-sub">72 predicciones analizadas — 12 grupos (A–L), 6 partidos cada uno · Modelo con correlación intra-grupo</p>
@@ -333,7 +364,7 @@
         Uso exclusivamente informativo y recreativo.
       </div>
     </div>
-    <p class="footer-copy">© 2026 RAM — Predicciones Deportivas · Generado 10 jun 2026</p>
+    <p class="footer-copy">© 2026 RAM — Predicciones Deportivas · Generado 26 jun 2026</p>
       <p style="text-align:center;"><a href="/politica-privacidad" style="color:#c8a600; font-size:13px; text-decoration:none;">Política de Privacidad</a></p>
   </footer>
 

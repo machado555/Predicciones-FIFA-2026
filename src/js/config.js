@@ -55,7 +55,7 @@ export const SITE = {
   title: 'Copa del Mundo FIFA 2026 — Predicciones Analíticas',
   description:
     'Predicciones del Mundial 2026 con modelo estadístico, factor de forma y resultados en vivo desde openfootball.',
-  generatedDate: '10 Jun 2026',
-  snapshotDate: '14 jun 2026',
+  generatedDate: '26 Jun 2026',
+  snapshotDate: '26 jun 2026',
   year: new Date().getFullYear(),
 };
